@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
-
+import icon from '../assets/react.svg'
+import Userskeletom from './Userskeletom';
 const User = () => {
     const [profile, setProfile] = useState(null)
 
@@ -20,20 +20,20 @@ const User = () => {
         <div className='user'>
             <h2>User detail</h2>
             {profile ? (
-                <div className='profile'>
-                    <h3>{profile.name || <Skeleton/>}</h3>
-                    <p>{profile.email || <Skeleton/>}</p>
-                    <a href={profile.website}>{profile.website || <Skeleton/>}</a>
+                <div className='profile' style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <img src={icon} alt="" />
+                    <h3>{profile.name }</h3>
+                    <p>{profile.email }</p>
+                    <a href={profile.website}>{profile.website}</a>
                 </div>
             ) : (
-                <SkeletonTheme baseColor="#aaadab" highlightColor="#444">
-                <p>
-                  <Skeleton count={3} />
-                </p>
-              </SkeletonTheme>
+                <Userskeletom />
             )}
         </div>
     )
 }
+
+
+
 
 export default User

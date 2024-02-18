@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import SkeletonElement from '../skeleton/SkeletonElement'
+import SkeleonArticle from '../skeleton/SkeleonArticle'
 const Articles = () => {
     const [articles, setArticles] = useState(null)
     useEffect(() => {
@@ -9,12 +9,11 @@ const Articles = () => {
             const res = await fetch('https://jsonplaceholder.typicode.com/posts')
             const data = await res.json()
             setArticles(data)
-        },5000)
+        },1000)
     })
   return (
     <div className='articles'>
          <h2>Articles</h2>
-         <SkeletonElement type='title'/>
          {articles && (
              articles.map((article) => (
                 <div className='article' key={article.id}>
@@ -24,7 +23,11 @@ const Articles = () => {
              ))
          )}
 
-         {!articles && <p>Loading...</p>}
+         {!articles && 
+         [1,2,3,4,5].map((n) => (
+             <SkeleonArticle key={n} theme='dark'/>
+         ))
+         }
     </div>
   )
 }
